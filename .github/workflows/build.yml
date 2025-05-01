@@ -22,6 +22,9 @@ jobs:
       with:
         dotnet-version: '9.0.x'
 
+    - name: Clear NuGet cache
+      run: dotnet nuget locals all --clear
+
     - name: Restore
       run: dotnet restore ${{ matrix.project }}
 
