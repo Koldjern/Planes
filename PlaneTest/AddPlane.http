@@ -1,0 +1,13 @@
+@host=https://localhost:7045
+POST {{host}}/planes
+Content-Type: application/json
+{
+	"motorName": "TesterMotor",
+	"type": "PassengerPlane",
+	"power": 100,
+	"consumption": 1,
+	"weightKg": 3000,
+	"maxWeight": "6000",
+	"name": "TesterFlyet",
+	"maxSpeed": "400"
+}

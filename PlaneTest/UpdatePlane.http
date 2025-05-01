@@ -1,0 +1,15 @@
+@host=https://localhost:7045
+PUT {{host}}/planes
+Content-Type: application/json
+{
+	"id": "53737f7e-f962-4e59-a062-8c30a49f0a9f",
+	"motorId": "af21f70c-5e32-4294-b16f-7beb841b112b",
+	"motorName": "TesterMotor1",
+	"type": "PassengerPlane",
+	"power": 1001,
+	"consumption": 11,
+	"weightKg": 30001,
+	"maxWeight": "60001",
+	"name": "TesterFlyet1",
+	"maxSpeed": "4001"
+}

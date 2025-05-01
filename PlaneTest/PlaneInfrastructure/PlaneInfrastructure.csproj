@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlaneApplication\PlaneApplication.csproj" />
+    <ProjectReference Include="..\PlaneDomain\PlaneDomain.csproj" />
+    <ProjectReference Include="..\SubApplication\SubApplication.csproj" />
+    <ProjectReference Include="..\SubDomain\SubDomain.csproj" />
+    <ProjectReference Include="..\SubInfrastructure\SubInfrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
