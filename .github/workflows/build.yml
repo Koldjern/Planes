@@ -14,8 +14,6 @@ jobs:
       matrix:
         project:
           - PlaneTest/PlaneApi/PlaneApi.csproj
-          - PlaneTest/PeopleApi/PeopleApi.csproj
-          - PlaneTest/TravelApi/TravelApi.csproj
 
     steps:
     - name: Checkout code
