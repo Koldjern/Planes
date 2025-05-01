@@ -1,7 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
-	
-<PropertyGroup>
-</PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 	
   <ItemGroup>
     <ProjectReference Include="..\PlaneApplication\PlaneApplication.csproj" />

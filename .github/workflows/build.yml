@@ -3,8 +3,6 @@ name: CI for All Projects
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   build-test-publish:
