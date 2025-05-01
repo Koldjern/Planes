@@ -1,11 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
-<PropertyGroup>
-	<TargetFramework>net9.0</TargetFramework>
-	<Nullable>enable</Nullable>
-	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	<ImplicitUsings>enable</ImplicitUsings>
-</PropertyGroup>
 	
   <ItemGroup>
     <ProjectReference Include="..\PlaneApplication\PlaneApplication.csproj" />
@@ -16,14 +9,5 @@
     <ProjectReference Include="..\SubDomain\SubDomain.csproj" />
     <ProjectReference Include="..\SubInfrastructure\SubInfrastructure.csproj" />
   </ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="MediatR" Version="12.4.1" />
-		<PackageReference Include="ErrorOr" Version="2.0.1" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
 	
 </Project>

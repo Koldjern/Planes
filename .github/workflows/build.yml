@@ -2,41 +2,29 @@ name: CI for All Projects
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+
+env:
+  DOTNET_VERSION: '9.0.x'
 
 jobs:
-  build-test-publish:
+  build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        project:
-          - PlaneTest/PlaneApi/PlaneApi.csproj
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '9.0.x'
+      - name: Setup .NET 
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: Check for Directory.Build.props
-      run: |
-        find . -name "Directory.Build.props"
-        cat ./Directory.Build.props || echo "Not found"
+      - name: Install dependencies 
+        run: dotnet restore WebApi
 
+      - name: Build 
+        run: dotnet build WebApi --configuration Release --no-restore
 
-    - name: Restore
-      run: dotnet restore ${{ matrix.project }}
-
-    - name: Build
-      run: dotnet build ${{ matrix.project }} --configuration Release --no-restore
-
-    - name: Test (PlaneTests only)
-      if: matrix.project == 'PlaneTest/PlaneApi/PlaneApi.csproj'
-      run: dotnet test PlaneTest/PlaneTests/PlaneTests.csproj --no-build --verbosity normal
-
-    - name: Publish
-      run: dotnet publish ${{ matrix.project }} --configuration Release --output ./artifacts/${{ matrix.project }}
+      - name: Test 
+        run: dotnet test WebApi --configuration Release --no-build
