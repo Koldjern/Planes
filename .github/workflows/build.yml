@@ -22,8 +22,11 @@ jobs:
       with:
         dotnet-version: '9.0.x'
 
-    - name: Clear NuGet cache
-      run: dotnet nuget locals all --clear
+    - name: Check for Directory.Build.props
+      run: |
+        find . -name "Directory.Build.props"
+        cat ./Directory.Build.props || echo "Not found"
+
 
     - name: Restore
       run: dotnet restore ${{ matrix.project }}
