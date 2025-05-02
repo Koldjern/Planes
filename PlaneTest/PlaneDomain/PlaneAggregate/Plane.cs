@@ -38,4 +38,10 @@ public class Plane : AggregateRoot<Guid>
 	{
 		Motor = Motor.Update(Motor!.Id, name, power, consumption);
 	}
+
+	public override string ToString()
+	{
+		return $"WeightKg: {WeightKg}, MaxWeight: {MaxWeight}, Name: {Name}, MaxSpeed: {MaxSpeed}, Type: {Type} " +
+	    (Motor is null ? string.Empty : $", Motor: {Motor}");
+	}
 }

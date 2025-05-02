@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PeopleDomain.EmployeeAggregate;
+using PeopleDomain.PassengerAggregate;
+using SubApplication;
 
 namespace PeopleApplication.Passengers;
 
-public interface IPassengerRepository
+public interface IPassengerRepository : ICrud<Passenger, Guid>
 {
 }

@@ -1,0 +1,9 @@
+@host=https://localhost:7072
+PUT {{host}}/employees
+Content-Type: application/json
+{
+	"id": "d30a45bc-9ab8-4860-b245-eb02c3e60315",
+	"HourWage": 5000,
+	"Weight": 808.88,
+	"JobTitle": "Expert"
+}

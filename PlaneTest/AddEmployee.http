@@ -1,0 +1,8 @@
+@host=https://localhost:7072
+POST {{host}}/employees
+Content-Type: application/json
+{
+	"HourWage": 500,
+	"Weight": 88.88,
+	"JobTitle": "Tester"
+}

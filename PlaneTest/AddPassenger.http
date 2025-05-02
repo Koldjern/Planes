@@ -1,0 +1,6 @@
+@host=https://localhost:7072
+POST {{host}}/passengers
+Content-Type: application/json
+{
+	"Weight": 88.88
+}

@@ -1,0 +1,4 @@
+@host=https://localhost:7072
+@id=53737f7e-f962-4e59-a062-8c30a49f0a9f
+DELETE {{host}}/employees/{{id}}
+Content-Type: application/json

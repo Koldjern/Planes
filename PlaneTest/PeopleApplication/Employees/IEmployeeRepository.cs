@@ -1,5 +1,9 @@
-﻿namespace PeopleApplication.Employees;
+﻿using PeopleDomain.EmployeeAggregate;
+using PeopleDomain.PassengerAggregate;
+using SubApplication;
 
-public interface IEmployeeRepository
+namespace PeopleApplication.Employees;
+
+public interface IEmployeeRepository : ICrud<Employee, Guid>
 {
 }

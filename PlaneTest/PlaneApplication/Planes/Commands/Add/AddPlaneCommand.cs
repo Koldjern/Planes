@@ -1,6 +1,5 @@
 ﻿using ErrorOr;
 using MediatR;
-using PlaneDomain.PlaneAggregate.Entities;
 
 namespace PlaneApplication.Planes.Commands.Add;
 

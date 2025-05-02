@@ -1,0 +1,4 @@
+@host=https://localhost:7072
+@id=d30a45bc-9ab8-4860-b245-eb02c3e60315
+GET {{host}}/employees/{{id}}
+Content-Type: application/json

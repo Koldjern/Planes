@@ -22,4 +22,9 @@ public class Motor : Entity<Guid>
 	{
 		return new (id, name, power, consumption);
 	}
+
+	public override string ToString()
+	{
+		return $"Name: {Name}, Power: {Power}, Consumption: {Consumption}";
+	}
 }

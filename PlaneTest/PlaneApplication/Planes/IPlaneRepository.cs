@@ -1,11 +1,7 @@
 ﻿using PlaneDomain.PlaneAggregate;
+using SubApplication;
 namespace PlaneApplication.Planes;
 
-public interface IPlaneRepository
+public interface IPlaneRepository : ICrud<Plane, Guid>
 {
-	Task<bool> Add(Plane plane);
-	Task<bool> Delete(Guid id);
-	Task<bool> Update(Plane plane);
-	Task<Plane?> Get(Guid id);
-	Task<IEnumerable<Plane>> GetAll();
 }

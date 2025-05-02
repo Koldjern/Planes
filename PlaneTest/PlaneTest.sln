@@ -63,6 +63,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaneTests", "PlaneTests\Pl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "People", "People", "{EED1382E-A791-4966-8FBB-FB6370CEA166}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Employee", "Employee", "{4B52A055-CBA8-4A63-AD91-BD99A7E7BEB0}"
+	ProjectSection(SolutionItems) = preProject
+		AddEmployee.http = AddEmployee.http
+		DeleteEmployee.http = DeleteEmployee.http
+		GetAllEmployees.http = GetAllEmployees.http
+		GetEmployee.http = GetEmployee.http
+		UpdateEmployee.http = UpdateEmployee.http
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Passenger", "Passenger", "{51799986-B9E9-471D-832A-9F8FD4A5E672}"
+	ProjectSection(SolutionItems) = preProject
+		AddPassenger.http = AddPassenger.http
+		DeletePassenger.http = DeletePassenger.http
+		GetAllPassengers.http = GetAllPassengers.http
+		GetPassenger.http = GetPassenger.http
+		UpdatePassenger.http = UpdatePassenger.http
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -162,6 +180,8 @@ Global
 		{8ED86516-DB4F-41C3-AD5A-185BE31744FA} = {F2F8B2A5-0123-4DE3-B8F2-1787B3239B52}
 		{89C8F77A-4376-421E-A5EA-BF5F9CF7F7B3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{EED1382E-A791-4966-8FBB-FB6370CEA166} = {F2F8B2A5-0123-4DE3-B8F2-1787B3239B52}
+		{4B52A055-CBA8-4A63-AD91-BD99A7E7BEB0} = {EED1382E-A791-4966-8FBB-FB6370CEA166}
+		{51799986-B9E9-471D-832A-9F8FD4A5E672} = {EED1382E-A791-4966-8FBB-FB6370CEA166}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B3268474-8694-4703-B397-94E44E16DB69}
