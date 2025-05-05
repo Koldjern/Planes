@@ -1,6 +1,11 @@
-﻿using SubDomain.Models;
+﻿using SubDomain.Events;
 
 namespace PeopleDomain.EmployeeAggregate.Events;
 
-public record EmployeeDeleted(Employee Employee)
-	: IDomainEvent;
+public record EmployeeDeleted : DeleteEvent<Employee>
+{
+	public EmployeeDeleted(Employee Deleted)
+		: base(Deleted)
+	{
+	}
+}

@@ -7,4 +7,9 @@ public abstract class AggregateRoot<TId> : Entity<TId>
 		: base(id)
 	{
 	}
+#pragma warning disable CS8618, SA1201
+	protected AggregateRoot()
+	{
+	}
+#pragma warning restore CS8618, SA1201
 }

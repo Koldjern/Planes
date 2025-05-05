@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SubApplication\SubApplication.csproj" />
+    <ProjectReference Include="..\SubDomain\SubDomain.csproj" />
+    <ProjectReference Include="..\TravelDomain\TravelDomain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Travels\Events\" />
+  </ItemGroup>
+
 </Project>

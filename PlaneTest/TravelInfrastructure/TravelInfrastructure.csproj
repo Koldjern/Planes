@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SubApplication\SubApplication.csproj" />
+    <ProjectReference Include="..\SubDomain\SubDomain.csproj" />
+    <ProjectReference Include="..\SubInfrastructure\SubInfrastructure.csproj" />
+    <ProjectReference Include="..\TravelApplication\TravelApplication.csproj" />
+    <ProjectReference Include="..\TravelDomain\TravelDomain.csproj" />
+  </ItemGroup>
+
 </Project>

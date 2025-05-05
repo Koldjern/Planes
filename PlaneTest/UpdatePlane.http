@@ -2,8 +2,8 @@
 PUT {{host}}/planes
 Content-Type: application/json
 {
-	"id": "53737f7e-f962-4e59-a062-8c30a49f0a9f",
-	"motorId": "af21f70c-5e32-4294-b16f-7beb841b112b",
+	"id": "657a7e03-e1d3-4af4-95c0-38ca60898956",
+	"motorId": "accbac76-2f8a-41d9-8964-fa0d10ff2775",
 	"motorName": "TesterMotor1",
 	"type": "PassengerPlane",
 	"power": 1001,

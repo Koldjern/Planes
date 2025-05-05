@@ -44,4 +44,10 @@ public class Plane : AggregateRoot<Guid>
 		return $"WeightKg: {WeightKg}, MaxWeight: {MaxWeight}, Name: {Name}, MaxSpeed: {MaxSpeed}, Type: {Type} " +
 	    (Motor is null ? string.Empty : $", Motor: {Motor}");
 	}
+
+#pragma warning disable CS8618, SA1201
+	private Plane()
+	{
+	}
+#pragma warning restore CS8618, SA1201
 }

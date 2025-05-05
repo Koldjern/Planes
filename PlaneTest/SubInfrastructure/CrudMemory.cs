@@ -11,12 +11,15 @@ public abstract class CrudMemory<TRoot, TId>
 	private readonly DomainEventPublishingMemory _publisher;
 	private readonly Func<TRoot, DeleteEvent<TRoot>>? _deleteEvent;
 	private readonly Func<TRoot, TRoot, UpdateEvent<TRoot>>? _updateEvent;
+	private readonly Func<TRoot, TRoot> _copy;
 
 	public CrudMemory(
 		DomainEventPublishingMemory publisher,
+		Func<TRoot, TRoot> copy,
 		Func<TRoot, DeleteEvent<TRoot>>? deleteEvent = null,
 		Func<TRoot, TRoot, UpdateEvent<TRoot>>? updateEvent = null)
 	{
+		_copy = copy;
 		_publisher = publisher;
 		_deleteEvent = deleteEvent;
 		_updateEvent = updateEvent;
@@ -49,7 +52,10 @@ public abstract class CrudMemory<TRoot, TId>
 	public async Task<TRoot?> Get(Guid id)
 	{
 		await Task.CompletedTask;
-		return _entities.Find(x => x.Id.Equals(id));
+		var find = _entities.Find(x => x.Id.Equals(id));
+		if (find is not null)
+			return _copy(find);
+		return find;
 	}
 
 	public async Task<IEnumerable<TRoot>> GetAll()

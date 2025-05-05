@@ -15,7 +15,7 @@ public class PlaneAddedHandler : INotificationHandler<PlaneAdded>
 
 	public Task Handle(PlaneAdded notification, CancellationToken cancellationToken)
 	{
-		_logger.LogInformation($"Plane added at Date: {DateTime.UtcNow}, \nPlane id: {notification.Plane.Id} {notification.Plane}");
+		_logger.LogInformation($"Plane created at Date: {DateTime.UtcNow}, \nPlane id: {notification.Plane.Id} {notification.Plane}");
 		return Task.CompletedTask;
 	}
 }

@@ -2,5 +2,5 @@
 
 namespace PeopleDomain.EmployeeAggregate.Events;
 
-public record EmployeeAdded
+public record EmployeeAdded(Employee Employee)
 	: IDomainEvent;

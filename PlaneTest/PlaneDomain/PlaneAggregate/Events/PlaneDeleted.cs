@@ -1,5 +1,4 @@
 ﻿using SubDomain.Events;
-using SubDomain.Models;
 
 namespace PlaneDomain.PlaneAggregate.Events;
 

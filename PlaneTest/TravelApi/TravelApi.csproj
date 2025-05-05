@@ -1,2 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\SubApi\SubApi.csproj" />
+    <ProjectReference Include="..\SubApplication\SubApplication.csproj" />
+    <ProjectReference Include="..\SubDomain\SubDomain.csproj" />
+    <ProjectReference Include="..\SubInfrastructure\SubInfrastructure.csproj" />
+    <ProjectReference Include="..\TravelApplication\TravelApplication.csproj" />
+    <ProjectReference Include="..\TravelDomain\TravelDomain.csproj" />
+    <ProjectReference Include="..\TravelInfrastructure\TravelInfrastructure.csproj" />
+  </ItemGroup>
 </Project>
