@@ -1,4 +1,5 @@
-﻿using SubInfrastructure;
+﻿using SubDomain.Models;
+using SubInfrastructure;
 using TravelApplication.Travels;
 using TravelDomain.TravelAggregate;
 
@@ -19,6 +20,18 @@ public class MemoryTravelRepository : ITravelRepository
 		await Task.CompletedTask;
 		_travels.Add(entity);
 		await _publisher.PublishDomainEvents(entity);
+		return true;
+	}
+
+	public async Task<bool> Delete(Guid id)
+	{
+		await Task.CompletedTask;
+		var find = _travels.Find(x => x.Id.Equals(id));
+		if (find is null)
+			return false;
+
+		_travels.Remove(find);
+		await _publisher.PublishDomainEvents(find);
 		return true;
 	}
 

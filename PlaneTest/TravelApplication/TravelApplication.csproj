@@ -12,8 +12,4 @@
     <ProjectReference Include="..\TravelDomain\TravelDomain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Travels\Events\" />
-  </ItemGroup>
-
 </Project>

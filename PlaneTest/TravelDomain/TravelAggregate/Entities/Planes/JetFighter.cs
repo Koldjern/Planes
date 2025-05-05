@@ -10,7 +10,9 @@ public class JetFighter : TravelPlane
 	{
 		WeightOfWeaponry = weightOfWeaponry;
 	}
+
 	public double WeightOfWeaponry { get; set; }
+
 	public static JetFighter Create(Guid id, double weightKg, double maxWeight, string name, double maxSpeed, double weightOfWeaponry, TravelEmployee captain)
 	{
 		var plane = new JetFighter(id, weightKg, maxWeight, name, maxSpeed, weightOfWeaponry, captain);

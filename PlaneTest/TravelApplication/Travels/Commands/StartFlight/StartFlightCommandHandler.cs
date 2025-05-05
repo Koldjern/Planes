@@ -38,7 +38,7 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 			return Errors.Travel.PassengerNotFound;
 		var passengers = passengerResponses.Select(res => TravelPassenger.Create(res!.Id, res.Weight));
 
-		var plane = MakePlane(planeResponse, employees, passengers, request.LaunchSpeed, request.WeightOfWeaponry);
+		var plane = MakePlane(planeResponse, employees, passengers, request.LaunchSpeed, request.WeightOfWeaponry, request.CargoWeight);
 
 		if (plane.IsError)
 			return plane.Errors;
@@ -63,13 +63,12 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 			travel.FlightEnds);
 	}
 
-	private ErrorOr<TravelPlane?> MakePlane(PlaneResponse response, IEnumerable<TravelEmployee> employees, IEnumerable<TravelPassenger> passengers, double? launchSpeed, double? weightOfWeaponry)
+	private ErrorOr<TravelPlane?> MakePlane(PlaneResponse response, IEnumerable<TravelEmployee> employees, IEnumerable<TravelPassenger> passengers, double? launchSpeed, double? weightOfWeaponry, double? cargoWeight)
 	{
 		switch (response.Type)
 		{
 			case "Glider":
 				{
-
 					if (launchSpeed is null)
 						return Error.Validation("Glider.LaunchSpeed.Missing", "Launch speed is required for gliders.");
 
@@ -90,11 +89,45 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 						passenger);
 				}
 			case "PrivatePlane":
+				{
+					return PrivatePlane.Create(
+						response.Id,
+						response.WeightKg,
+						response.MaxWeight,
+						response.Name,
+						response.MaxSpeed,
+						employees,
+						passengers);
+				}
 
 			case "PassengerPlane":
+				{
+					if (passengers.Count() == 0)
+						return Error.Validation("PassengerPlane.No.Passengers", "No Passengers on a passenger plane Not allowed");
 
+					return PassengerPlane.Create(
+						response.Id,
+						response.WeightKg,
+						response.MaxWeight,
+						response.Name,
+						response.MaxSpeed,
+						employees,
+						passengers);
+				}
 			case "TransportPlane":
+				{
+					if (cargoWeight == null)
+						return Error.Validation("TransportPlane.No.Cargo", "No Cargo on a transport plane Not allowed");
 
+					return TransportPlane.Create(
+						response.Id,
+						response.WeightKg,
+						response.MaxWeight,
+						response.Name,
+						response.MaxSpeed,
+						employees,
+						cargoWeight.Value);
+				}
 			case "JetFighter":
 				{
 					if (weightOfWeaponry is null)

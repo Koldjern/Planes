@@ -2,17 +2,17 @@
 POST {{host}}/travels
 Content-Type: application/json
 {
-	"PlaneId": "5b8dabf9-84b0-4d86-9fa0-ce51f200d78b",
+	"PlaneId": "0cdbb469-9440-45d4-812d-18a3618cd35d",
 	"From": {
 		"Latitude": 100,
 		"Longitude": 100
 	},
 	"To": {
-		"Latitude": 110,
-		"Longitude": 110
+		"Latitude": 100.001,
+		"Longitude": 100.001
 	},
 	"Employees": [
-		"48be39be-bef9-44e3-ae3f-e279d9478bef"
+		"957cff99-b388-4ff7-a75e-62e187d4b261"
 	],
 	"Passengers": [
 	],

@@ -39,6 +39,7 @@ public abstract class TravelPlane : Entity<Guid>
 		double speed = 1606.9 * (Motor!.Power * Weight());
 		return speed > MaxSpeed ? MaxSpeed : speed;
 	}
+
 	public virtual double Weight()
 	{
 		var employeesWeight = Employees.Sum(e => e.Weight);

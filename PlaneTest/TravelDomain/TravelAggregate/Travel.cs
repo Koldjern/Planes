@@ -1,5 +1,6 @@
 ﻿using SubDomain.Models;
 using TravelDomain.TravelAggregate.Entities.Planes;
+using TravelDomain.TravelAggregate.Events;
 using TravelDomain.TravelAggregate.ValueObjects;
 
 namespace TravelDomain.TravelAggregate;
@@ -27,6 +28,7 @@ public class Travel : AggregateRoot<Guid>
 	{
 		Travel travel = new Travel(Guid.NewGuid(), plane, from, to,	ticketCost, DateTime.UtcNow);
 		travel.FlightEnds = travel.FlightBegun.Add(travel.TimeLeft());
+		travel.AddDomainEvent(new TravelEnded(travel));
 		return travel;
 	}
 
