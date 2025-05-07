@@ -1,4 +1,5 @@
-﻿using SubDomain.Events;
+﻿using System.Reflection;
+using SubDomain.Events;
 using SubDomain.Models;
 
 namespace SubInfrastructure;
@@ -7,7 +8,7 @@ public abstract class CrudMemory<TRoot, TId>
 	where TRoot : AggregateRoot<TId>
 	where TId : notnull
 {
-	private static List<TRoot> _entities = new List<TRoot>();
+	protected static List<TRoot> _entities = null!;
 	private readonly DomainEventPublishingMemory _publisher;
 	private readonly Func<TRoot, DeleteEvent<TRoot>>? _deleteEvent;
 	private readonly Func<TRoot, TRoot, UpdateEvent<TRoot>>? _updateEvent;
@@ -23,6 +24,13 @@ public abstract class CrudMemory<TRoot, TId>
 		_publisher = publisher;
 		_deleteEvent = deleteEvent;
 		_updateEvent = updateEvent;
+	}
+
+	public static void IdSetter(TRoot root, TId id)
+	{
+		var idProp = typeof(TRoot).GetProperty("Id", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.FlattenHierarchy);
+		if (idProp != null && idProp.CanWrite)
+			idProp.SetValue(root, id);
 	}
 
 	public async Task<bool> Add(TRoot entity)

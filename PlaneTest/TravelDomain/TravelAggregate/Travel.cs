@@ -34,7 +34,7 @@ public class Travel : AggregateRoot<Guid>
 
 	public decimal TotalWages()
 	{
-		return Plane.Employees.Sum(e => e.HourWage);
+		return Plane.Employees.Sum(e => e.HourWage) * (decimal)TimeLeft().TotalHours;
 	}
 
 	public decimal TotalTickets()
@@ -46,7 +46,7 @@ public class Travel : AggregateRoot<Guid>
 	{
 		var hours = DistanceKM() / Plane.SpeedKm();
 		var flightends = FlightBegun.AddHours(hours);
-		return flightends.Subtract(FlightBegun);
+		return flightends.Subtract(DateTime.UtcNow);
 	}
 
 	public bool TooHeavy()
@@ -70,4 +70,9 @@ public class Travel : AggregateRoot<Guid>
 			return 0;
 		return DistanceKM() / 100 * Plane.Motor.Consumption;
 	}
+#pragma warning disable CS8618, SA1201
+	private Travel()
+	{
+	}
+#pragma warning restore CS8618, SA1201
 }

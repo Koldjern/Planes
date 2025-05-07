@@ -2,6 +2,6 @@
 PUT {{host}}/passengers
 Content-Type: application/json
 {
-	"id": "d30a45bc-9ab8-4860-b245-eb02c3e60315",
+	"id": "5535ae79-426f-49ec-96b7-b4212373474e",
 	"Weight": 808.88
 }

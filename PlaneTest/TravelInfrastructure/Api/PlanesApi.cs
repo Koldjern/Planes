@@ -15,6 +15,7 @@ public class PlanesApi : IPlanesApi
 
 	public async Task<PlaneResponse?> GetPlane(Guid id)
 	{
-		return await _apiAccess.QuerySingleAsync<PlaneResponse>("/planes/" + id);
+		var result = await _apiAccess.QuerySingleAsync<PlaneResponse>("/planes/" + id);
+		return result;
 	}
 }

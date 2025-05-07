@@ -1,4 +1,4 @@
 @host=https://localhost:7045
-@id=53737f7e-f962-4e59-a062-8c30a49f0a9f
+@id=5535ae79-426f-49ec-96b7-b4212373474e
 GET {{host}}/planes/{{id}}
 Content-Type: application/json

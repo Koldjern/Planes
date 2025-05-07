@@ -1,6 +1,7 @@
 ﻿using ErrorOr;
 using MediatR;
 using PlaneDomain.PlaneAggregate;
+using PlaneDomain.PlaneAggregate.Entities;
 using PlaneDomain.PlaneAggregate.Errors;
 
 namespace PlaneApplication.Planes.Commands.Update;
@@ -17,12 +18,12 @@ public class UpdatePlaneCommandHandler : IRequestHandler<UpdatePlaneCommand, Err
 	public async Task<ErrorOr<Updated>> Handle(UpdatePlaneCommand request, CancellationToken cancellationToken)
 	{
 		if (PlaneType.IsGlider(request.Type))
-			return await Glider(request, cancellationToken);
+			return await HandleGlider(request, cancellationToken);
 
-		return await Motor(request, cancellationToken);
+		return await HandleMotor(request, cancellationToken);
 	}
 
-	private async Task<ErrorOr<Updated>> Glider(UpdatePlaneCommand request, CancellationToken cancellationToken)
+	private async Task<ErrorOr<Updated>> HandleGlider(UpdatePlaneCommand request, CancellationToken cancellationToken)
 	{
 		var plane = await _planeRepository.Get(request.Id);
 
@@ -41,15 +42,20 @@ public class UpdatePlaneCommandHandler : IRequestHandler<UpdatePlaneCommand, Err
 		return Result.Updated;
 	}
 
-	private async Task<ErrorOr<Updated>> Motor(UpdatePlaneCommand request, CancellationToken cancellationToken)
+	private async Task<ErrorOr<Updated>> HandleMotor(UpdatePlaneCommand request, CancellationToken cancellationToken)
 	{
 		var plane = await _planeRepository.Get(request.Id);
 
-		if (plane is null || plane.Motor!.Id != request.MotorId)
+		if (plane is null || (plane.Motor is not null && plane.Motor!.Id != request.MotorId))
 			return Errors.Plane.NotFound;
 
+		if (plane.Motor is null)
+			plane.Motor = Motor.CreateNew(request.MotorName!, request.Power!.Value, request.Consumption!.Value);
+		else
+			plane.UpdateMotor(request.MotorName!, request.Power!.Value, request.Consumption!.Value);
+
+		plane.Type = request.Type;
 		plane.Name = request.Name;
-		plane.UpdateMotor(request.MotorName!, request.Power!.Value, request.Consumption!.Value);
 		plane.WeightKg = request.WeightKg;
 		plane.MaxWeight = request.MaxWeight;
 		plane.MaxSpeed = request.MaxSpeed;

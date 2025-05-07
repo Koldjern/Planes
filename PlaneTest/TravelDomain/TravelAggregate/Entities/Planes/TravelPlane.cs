@@ -40,6 +40,11 @@ public abstract class TravelPlane : Entity<Guid>
 		return speed > MaxSpeed ? MaxSpeed : speed;
 	}
 
+	public virtual double SpeedMiles()
+	{
+		return SpeedKm() * 0.621371;
+	}
+
 	public virtual double Weight()
 	{
 		var employeesWeight = Employees.Sum(e => e.Weight);

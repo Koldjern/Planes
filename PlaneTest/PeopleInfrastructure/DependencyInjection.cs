@@ -13,7 +13,7 @@ public static class DependencyInjection
 	{
 		services.SubInfrastructure();
 		services.AddScoped<IPassengerRepository, MemoryPassengerRepository>();
-		services.AddScoped<IEmployeeRepository, MemoryEmployeeRepository>();
+		services.AddScoped<IEmployeeRepository, EmployeeMemoryRepository>();
 		return services;
 	}
 }

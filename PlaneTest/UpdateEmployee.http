@@ -2,7 +2,7 @@
 PUT {{host}}/employees
 Content-Type: application/json
 {
-	"id": "c4159b0c-891b-4fe6-80a2-522bed9ad2be",
+	"id": "8410afe4-0364-4958-911d-a2d07b195818",
 	"HourWage": 5000,
 	"Weight": 808.88,
 	"JobTitle": "Expert"

@@ -2,6 +2,7 @@
 using MediatR;
 using TravelApplication.Travels.Responses;
 using TravelDomain.TravelAggregate;
+using TravelDomain.TravelAggregate.Entities;
 using TravelDomain.TravelAggregate.Entities.Employee;
 using TravelDomain.TravelAggregate.Entities.People;
 using TravelDomain.TravelAggregate.Entities.Planes;
@@ -25,16 +26,16 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 	public async Task<ErrorOr<TravelResponse>> Handle(StartFlightCommand request, CancellationToken cancellationToken)
 	{
 		var planeResponse = await _planesApi.GetPlane(request.PlaneId);
-		if (planeResponse is null)
+		if (planeResponse is null || planeResponse.Id == Guid.Empty)
 			return Errors.Travel.PlaneNotFound;
 
 		var employeeResponses = await Task.WhenAll(request.Employees.Select(_peopleApi.GetEmployee));
-		if (employeeResponses.Any(r => r is null))
+		if (employeeResponses.Any(r => r is null || r.Id == Guid.Empty))
 			return Errors.Travel.EmployeeNotFound;
 		var employees = employeeResponses.Select(res => TravelEmployee.Create(res!.Id, res.JobTitle, res.Weight, res.HourWage));
 
 		var passengerResponses = await Task.WhenAll(request.Passengers.Select(_peopleApi.GetPassenger));
-		if (passengerResponses.Any(r => r is null))
+		if (passengerResponses.Any(r => r is null || r.Id == Guid.Empty))
 			return Errors.Travel.PassengerNotFound;
 		var passengers = passengerResponses.Select(res => TravelPassenger.Create(res!.Id, res.Weight));
 
@@ -46,7 +47,7 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 		if (plane.Value is null)
 			return Errors.Travel.ErrorHandlingPlane;
 
-		var travel = Travel.CreateNew(plane.Value, request.From, request.To, request.TicketCost);
+		var travel = Travel.CreateNew(plane.Value, request.From, request.To, request.TicketCost ?? 0);
 
 		if (travel.TooHeavy())
 			return Errors.Travel.PlaneTooHeavy(plane.Value.MaxWeight, plane.Value.Weight());
@@ -59,7 +60,7 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 			travel.TotalTickets(),
 			travel.FuelConsumption(),
 			travel.TimeLeft(),
-			travel.DistanceKM(),
+			DistanceResponse.KmOrMiles(request.KmOrMiles, travel, plane.Value),
 			travel.FlightEnds);
 	}
 
@@ -92,6 +93,7 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 				{
 					return PrivatePlane.Create(
 						response.Id,
+						MotorFromresponse(response.Motor!),
 						response.WeightKg,
 						response.MaxWeight,
 						response.Name,
@@ -107,6 +109,7 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 
 					return PassengerPlane.Create(
 						response.Id,
+						MotorFromresponse(response.Motor!),
 						response.WeightKg,
 						response.MaxWeight,
 						response.Name,
@@ -121,6 +124,7 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 
 					return TransportPlane.Create(
 						response.Id,
+						MotorFromresponse(response.Motor!),
 						response.WeightKg,
 						response.MaxWeight,
 						response.Name,
@@ -140,6 +144,7 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 
 					return JetFighter.Create(
 						response.Id,
+						MotorFromresponse(response.Motor!),
 						response.WeightKg,
 						response.MaxWeight,
 						response.Name,
@@ -150,5 +155,10 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 			default:
 				return Error.Validation("Plane.Type.Unknown", $"Plane type '{response.Type}' is not supported.");
 		}
+	}
+
+	private Motor MotorFromresponse(MotorResponse response)
+	{
+		return Motor.Create(response.Power, response.Consumption);
 	}
 }

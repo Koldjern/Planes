@@ -7,6 +7,12 @@ public class Coordinate : ValueObject
 	public double Latitude { get; set; }
 	public double Longitude { get; set; }
 
+	public Coordinate(double latitude, double longitude)
+	{
+		Latitude = latitude;
+		Longitude = longitude;
+	}
+
 	public static double DistanceMeters(Coordinate from, Coordinate to)
 	{
 		const double r = 6378100; // meters

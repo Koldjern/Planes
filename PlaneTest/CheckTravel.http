@@ -1,4 +1,4 @@
 @host=https://localhost:7287
-@id=53737f7e-f962-4e59-a062-8c30a49f0a9f
-GET {{host}}/travels/{{id}}
+@id=f68801c0-6d42-4b99-9fe1-4c32f2c44f16
+GET {{host}}/travels/{{id}}?kmOrMiles=miles
 Content-Type: application/json

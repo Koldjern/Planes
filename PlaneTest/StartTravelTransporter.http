@@ -1,0 +1,21 @@
+@host=https://localhost:7287
+POST {{host}}/travels
+Content-Type: application/json
+{
+	"PlaneId": "8410afe4-0364-4958-911d-a2d07b195818",
+	"From": {
+		"Latitude": 100,
+		"Longitude": 100
+	},
+	"To": {
+		"Latitude": 100.01,
+		"Longitude": 100.01
+	},
+	"Employees": [
+		"24ef6897-895a-4969-b45c-f480e66a9aca",
+		"5535ae79-426f-49ec-96b7-b4212373474e"
+	],
+	"Passengers": [],
+	"TicketCost": 1000,
+	"CargoWeight": 20000 
+}

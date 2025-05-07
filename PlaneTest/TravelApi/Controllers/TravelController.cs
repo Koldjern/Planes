@@ -21,13 +21,13 @@ public class TravelController : ApiController
 	}
 
 	[HttpGet("{id}")]
-	public async Task<IActionResult> CheckTravel(Guid id)
+	public async Task<IActionResult> CheckTravel([FromRoute] Guid id, [FromQuery] string? kmOrMiles)
 	{
-		var query = new CheckTravelQuery(id);
+		var query = new CheckTravelQuery(id, kmOrMiles);
 		var result = await _mediator.Send(query);
 
 		return result.Match(
-			result => Ok(_mapper.Map<PlaneResponse>(result)),
+			response => Ok(_mapper.Map<TravelResponse>(response)),
 			Problem);
 	}
 
@@ -39,7 +39,7 @@ public class TravelController : ApiController
 		var result = await _mediator.Send(command);
 
 		return result.Match(
-			id => Created("planes/" + id, id),
+			response => Created("planes/" + response.Id, response),
 			Problem);
 	}
 }

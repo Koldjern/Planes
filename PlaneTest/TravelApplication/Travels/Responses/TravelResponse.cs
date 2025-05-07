@@ -4,7 +4,7 @@ public record TravelResponse(
 	Guid Id,
 	decimal WageCost,
 	decimal TicketsPrice,
-	double FuelSpent,
+	double FuelSpentLiters,
 	TimeSpan Duration,
-	double TravelDistance,
+	DistanceResponse TravelDistance,
 	DateTime FlightEndsAt);

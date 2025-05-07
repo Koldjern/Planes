@@ -29,7 +29,7 @@ public class PlaneCommandsTests
 
 		var result = await handler.Handle(command, CancellationToken.None);
 
-		Assert.True(result.IsError == false);
+		Assert.False(result.IsError);
 		Assert.True(result.Value != Guid.Empty);
 	}
 
@@ -69,6 +69,6 @@ public class PlaneCommandsTests
 
 		var result = await handler.Handle(command, CancellationToken.None);
 
-		Assert.True(result.IsError == false);
+		Assert.False(result.IsError);
 	}
 }

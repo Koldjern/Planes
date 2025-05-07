@@ -1,4 +1,4 @@
 @host=https://localhost:7045
-@id=53737f7e-f962-4e59-a062-8c30a49f0a9f
+@id=8410afe4-0364-4958-911d-a2d07b195818
 DELETE {{host}}/planes/{{id}}
 Content-Type: application/json

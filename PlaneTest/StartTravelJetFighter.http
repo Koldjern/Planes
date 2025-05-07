@@ -2,7 +2,7 @@
 POST {{host}}/travels
 Content-Type: application/json
 {
-	"PlaneId": "0cdbb469-9440-45d4-812d-18a3618cd35d",
+	"PlaneId": "3e3794a6-f562-4b71-a6e4-202061e82403",
 	"From": {
 		"Latitude": 100,
 		"Longitude": 100
@@ -12,10 +12,10 @@ Content-Type: application/json
 		"Longitude": 100.001
 	},
 	"Employees": [
-		"957cff99-b388-4ff7-a75e-62e187d4b261"
+		"24ef6897-895a-4969-b45c-f480e66a9aca"
 	],
 	"Passengers": [
 	],
-	"TicketCost": 1000,
-	"LaunchSpeed": 5000
+	"TicketCost": 0,
+	"WeightOfWeaponry": 600
 }

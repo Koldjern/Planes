@@ -25,4 +25,9 @@ public class Motor : ValueObject
 	{
 		return $"Power: {Power}, Consumption: {Consumption}";
 	}
+#pragma warning disable CS8618, SA1201
+	private Motor()
+	{
+	}
+#pragma warning restore CS8618, SA1201
 }

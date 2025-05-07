@@ -2,9 +2,12 @@
 POST {{host}}/planes
 Content-Type: application/json
 {
-	"type": "Glider",
-	"weightKg": 400,
-	"maxWeight": "600",
-	"name": "TesterFlyet",
+	"motorName": "TesterMotor1",
+	"type": "PassengerPlane",
+	"power": 100100,
+	"consumption": 11,
+	"weightKg": 30001,
+	"maxWeight": "60001",
+	"name": "TesterFlyet1",
 	"maxSpeed": "10000"
 }

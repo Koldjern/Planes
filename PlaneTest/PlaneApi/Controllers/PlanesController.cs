@@ -30,7 +30,7 @@ public class PlanesController : ApiController
 		var result = await _mediator.Send(query);
 
 		return result.Match(
-			result => Ok(_mapper.Map<PlaneResponse>(result)),
+			response => Ok(_mapper.Map<PlaneResponse>(response)),
 			Problem);
 	}
 
@@ -41,7 +41,7 @@ public class PlanesController : ApiController
 		var result = await _mediator.Send(query);
 
 		return result.Match(
-			result => Ok(_mapper.Map<PlanesResponse>(result)),
+			response => Ok(_mapper.Map<PlanesResponse>(response)),
 			Problem);
 	}
 
