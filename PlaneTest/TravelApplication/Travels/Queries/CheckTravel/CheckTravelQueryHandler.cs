@@ -27,7 +27,7 @@ public class CheckTravelQueryHandler : IRequestHandler<CheckTravelQuery, ErrorOr
 			travel.TotalTickets(),
 			travel.FuelConsumption(),
 			travel.TimeLeft(),
-			DistanceResponse.KmOrMiles(request.KmOrMiles, travel, travel.Plane),
+			DistanceResponse.KmOrMiles(request.KmOrMiles, travel),
 			travel.FlightEnds);
 	}
 }

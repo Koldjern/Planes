@@ -4,8 +4,8 @@ namespace TravelDomain.TravelAggregate.ValueObjects;
 
 public class Coordinate : ValueObject
 {
-	public double Latitude { get; set; }
-	public double Longitude { get; set; }
+	public double Latitude { get; private set; }
+	public double Longitude { get; private set; }
 
 	public Coordinate(double latitude, double longitude)
 	{

@@ -9,8 +9,8 @@ public class Motor : ValueObject
 		Power = power;
 		Consumption = consumption;
 	}
-	public double Power { get; }
-	public double Consumption { get; }
+	public double Power { get; private set; }
+	public double Consumption { get; private set; }
 	public static Motor Create(double power, double consumption)
 	{
 		return new (power, consumption);

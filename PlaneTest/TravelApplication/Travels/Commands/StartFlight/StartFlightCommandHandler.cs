@@ -60,7 +60,7 @@ public class StartFlightCommandHandler : IRequestHandler<StartFlightCommand, Err
 			travel.TotalTickets(),
 			travel.FuelConsumption(),
 			travel.TimeLeft(),
-			DistanceResponse.KmOrMiles(request.KmOrMiles, travel, plane.Value),
+			DistanceResponse.KmOrMiles(request.KmOrMiles, travel),
 			travel.FlightEnds);
 	}
 

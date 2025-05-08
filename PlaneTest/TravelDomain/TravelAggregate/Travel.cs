@@ -10,14 +10,14 @@ public class Travel : AggregateRoot<Guid>
 	private Travel(Guid id, TravelPlane plane, Coordinate from, Coordinate to, decimal ticketCost, DateTime flightBegun)
 		: base(id)
 	{
-		Plane = plane;
+		_plane = plane;
 		From = from;
 		To = to;
 		TicketCost = ticketCost;
 		FlightBegun = flightBegun;
 	}
 
-	public TravelPlane Plane { get; private set; }
+	private TravelPlane _plane;
 	public Coordinate From { get; private set; }
 	public Coordinate To { get; private set; }
 	public decimal TicketCost { get; private set; }
@@ -31,27 +31,30 @@ public class Travel : AggregateRoot<Guid>
 		travel.AddDomainEvent(new TravelEnded(travel));
 		return travel;
 	}
+	public virtual double SpeedKm() => _plane.SpeedKm();
+
+	public virtual double SpeedMiles() => _plane.SpeedMiles();
 
 	public decimal TotalWages()
 	{
-		return Plane.Employees.Sum(e => e.HourWage) * (decimal)TimeLeft().TotalHours;
+		return _plane.Employees.Sum(e => e.HourWage) * (decimal)TimeLeft().TotalHours;
 	}
 
 	public decimal TotalTickets()
 	{
-		return Plane.Passengers.Count() * TicketCost;
+		return _plane.Passengers.Count() * TicketCost;
 	}
 
 	public TimeSpan TimeLeft()
 	{
-		var hours = DistanceKM() / Plane.SpeedKm();
+		var hours = DistanceKM() / _plane.SpeedKm();
 		var flightends = FlightBegun.AddHours(hours);
 		return flightends.Subtract(DateTime.UtcNow);
 	}
 
 	public bool TooHeavy()
 	{
-		return Plane.Weight() > Plane.MaxWeight;
+		return _plane.Weight() > _plane.MaxWeight;
 	}
 
 	public double DistanceKM()
@@ -66,9 +69,9 @@ public class Travel : AggregateRoot<Guid>
 
 	public double FuelConsumption()
 	{
-		if (Plane.Motor is null)
+		if (_plane.Motor is null)
 			return 0;
-		return DistanceKM() / 100 * Plane.Motor.Consumption;
+		return DistanceKM() / 100 * _plane.Motor.Consumption;
 	}
 #pragma warning disable CS8618, SA1201
 	private Travel()
